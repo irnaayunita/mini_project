@@ -11,7 +11,7 @@ $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <style> 
     </style>
 </head>
 <body>
@@ -19,7 +19,7 @@ $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
     <table border="1">
         <tr>
             <th>NIP</th>
-            <th>NamaLengkap</th>
+            <th>Nama Guru</th>
             <th>Jenis Kelamin</th>
             <th>Jabatan</th>
             <th>Mata Pelajaran diampu</th>
@@ -27,10 +27,10 @@ $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
         <?php foreach ($data as $guru): ?>
         <tr>
             <td><?php echo $guru['nip']; ?></td>
-            <td><?php echo $guru['nama_lengkap']; ?></td>
+            <td><?php echo $guru['nama_guru']; ?></td>
             <td><?php echo $guru['jenis_kelamin']; ?></td>
             <td><?php echo $guru['jabatan']; ?></td>
-            <td><?php echo $guru['mata_pelajaran_diampu']; ?></td>
+            <td><?php echo $guru['mapel_diampu']; ?></td>
         </tr>
         <?php endforeach; ?>
     </table>
