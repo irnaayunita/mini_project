@@ -71,7 +71,7 @@ $role         = $_SESSION['role'];
         <!-- FITUR KHUSUS ADMIN -->
         
         <!-- 1. KARTU PROFIL ADMIN (Menggantikan Dashboard Utama) -->
-        <a href="profil_admin.php" class="menu-card">
+        <a href="profil.php" class="menu-card">
             <div>
                 <div class="card-icon icon-purple">
                     <i class="fa-solid fa-user-shield"></i>
