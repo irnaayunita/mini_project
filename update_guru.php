@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 
     $query = "UPDATE guru SET nip = '$nip', nama_guru = '$nama_guru', jenis_kelamin = '$jenis_kelamin', jabatan = '$jabatan' where nip ='$nip'";
     mysqli_query($koneksi, $query);
-    header("Location:tampil_mapel.php");
+    header("Location:tampil_guru.php");
     exit;
 }
     $query_lama = "SELECT * FROM guru WHERE nip ='$nip'";

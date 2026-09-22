@@ -537,7 +537,8 @@ body {
     border-radius: 8px;
     padding: 30px;
     max-width: 600px;
-    margin: 40px auto;
+    margin-top: 125px !important;
+    margin: auto;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
@@ -555,7 +556,7 @@ body {
 .update-header p {
     font-size: 13px;
     color: #64748b;
-    margin-top: -15px;
+    margin-top: 5px;
     margin-bottom: 20px;
 }
 
