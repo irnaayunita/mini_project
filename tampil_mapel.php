@@ -1,5 +1,9 @@
 <?php
+session_start();
 include 'config/koneksi.php';
+
+$role = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+
 $query = "SELECT * FROM mapel";
 $hasil = mysqli_query($koneksi, $query);
 $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
@@ -21,7 +25,10 @@ $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
             <th>Nama Mata Pelajaran</th>
             <th>Tingkat</th>
             <th>Alokasi Jam</th>
+
+            <?php if (strtolower($role) === 'administrator' || strtolower($role) === 'admin'): ?>
             <th>Aksi</th>
+            <?php endif; ?>
         </tr>
         <?php foreach ($data as $mapel): ?>
         <tr>
@@ -29,10 +36,13 @@ $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
             <td><?php echo $mapel['nama_mapel']; ?></td>
             <td><?php echo $mapel['tingkat']; ?></td>
             <td><?php echo $mapel['alokasi_jam']; ?></td>
+
+            <?php if (strtolower($role) === 'administrator' || strtolower($role) === 'admin'): ?>
             <td>
                 <a href="update_mapel.php?kode_mapel=<?php echo $mapel['kode_mapel']; ?>" class="update-zoom">🛠️Update</a>
                 <a href="delete_mapel.php?kode_mapel=<?php echo $mapel['kode_mapel']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="delete">🗑️Delete</a>
             </td>
+             <?php endif; ?>
         </tr>
         <?php endforeach; ?>
     </table>
