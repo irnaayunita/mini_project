@@ -1,5 +1,9 @@
 <?php
+session_start();
 include 'config/koneksi.php';
+
+$role = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+
 $query = "SELECT * FROM guru";
 $hasil = mysqli_query($koneksi, $query);
 $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
@@ -21,7 +25,10 @@ $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
             <th>Nama Guru</th>
             <th>Jenis Kelamin</th>
             <th>Jabatan</th>
+
+            <?php if (strtolower($role) === 'administrator' || strtolower($role) === 'admin'): ?>
             <th>Aksi</th>
+            <?php endif; ?>
         </tr>
         <?php foreach ($data as $guru): ?>
         <tr>
@@ -29,10 +36,13 @@ $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
             <td><?php echo $guru['nama_guru']; ?></td>
             <td><?php echo $guru['jenis_kelamin']; ?></td>
             <td><?php echo $guru['jabatan']; ?></td>
+
+             <?php if (strtolower($role) === 'administrator' || strtolower($role) === 'admin'): ?>
             <td>
                 <a href="update_guru.php?nip=<?php echo $guru['nip']; ?>" class="update-zoom">🛠️Update</a>
                 <a href="delete_guru.php?nip=<?php echo $guru['nip']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="delete">🗑️Delete</a>
             </td>
+            <?php endif; ?>
         </tr>
         <?php endforeach; ?>
     </table>
