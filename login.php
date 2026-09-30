@@ -61,14 +61,14 @@ if (isset($_POST['login'])) {
         <div class="banner-side">
             <div class="brand-logo">
                 <i class="fa-solid fa-graduation-cap"></i>
-                <span>Kurikulum</span>
+                <span>KURIKULUM SMKN 1 MAJA</span>
             </div>
             <div class="banner-content">
                 <h1>Platform Digital Pengelolaan Kurikulum</h1>
                 <p>Akses cepat dan aman untuk data guru, data mapel, dan pengolahan data akademis sekolah.</p>
                 
                 <div class="feature-badge">
-                    <i class="fa-solid fa-shield-check" style="color: #4ade80;"></i>
+                    <i class="fa-solid fa-shield-check" style="color: #1e3a8a;"></i>
                     Sistem Multi-User
                 </div>
             </div>
