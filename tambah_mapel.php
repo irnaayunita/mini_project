@@ -7,15 +7,36 @@ if (isset($_POST['submit'])) {
   $tingkat = $_POST['tingkat'];
   $alokasi_jam = $_POST['alokasi_jam'];
 
-  $query = "INSERT INTO mapel (kode_mapel, nama_mapel, tingkat, alokasi_jam) VALUES ('$kode_mapel', '$nama_mapel', '$tingkat', '$alokasi_jam')";
-  $simpan = mysqli_query($koneksi, $query);
+  
+  $error = "";
 
-  if ($simpan) {
-    header("location:tampil_mapel.php");
-    exit;
-  } else {
-    echo "<script>alert('Gagal menambahkan data!');</script>";
-  }
+    // 1. Validasi Kode Mapel (Harus Angka)
+    if (!ctype_digit($kode_mapel)) {
+        $error = "Kode Mapel harus berupa angka!";
+    }
+    // 2. Validasi Nama Mapel (Harus Huruf & Karakter Nama Umum)
+    else if (!preg_match("/^[a-zA-Z\s\.',]+$/", $nama_mapel)) {
+        $error = "Nama Mapel hanya boleh berisi huruf dan tidak boleh mengandung angka!";
+    }
+
+    // Jika terjadi error, tampilkan peringatan dan kembali ke form
+    if (!empty($error)) {
+        echo "<script>
+            alert('$error');
+            window.history.back();
+        </script>";
+        exit;
+    }
+
+    // --- PROSES SIMPAN KE DATABASE (Jika Lolos Validasi) ---
+    $query = "INSERT INTO mapel (kode_mapel, nama_mapel, tingkat, alokasi_jam) VALUES ('$kode_mapel', '$nama_mapel', '$tingkat', '$alokasi_jam')";
+    $simpan = mysqli_query($koneksi, $query);
+    if ($simpan) {
+        header("location:tampil_mapel.php");
+        exit;
+    } else {
+        echo "<script>alert('Gagal menambahkan data!');</script>" . mysqli_error($koneksi);
+    }
 }
 ?>
 
