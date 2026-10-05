@@ -2,20 +2,40 @@
 include "config/koneksi.php";
 
 if (isset($_POST['submit'])) {
-  $nip = $_POST['nip'];
+   $nip = $_POST['nip'];
   $nama_guru = $_POST['nama_guru'];
   $jenis_kelamin = $_POST['jenis_kelamin'];
   $jabatan = $_POST['jabatan'];
 
-  $query = "INSERT INTO guru (nip, nama_guru, jenis_kelamin, jabatan) VALUES ('$nip', '$nama_guru', '$jenis_kelamin', '$jabatan')";
-  $simpan = mysqli_query($koneksi, $query);
+  $error = "";
 
-  if ($simpan) {
-    header("location:tampil_guru.php");
-    exit;
-  } else {
-    echo "<script>alert('Gagal menambahkan data!');</script>";
-  }
+    // 1. Validasi NIP (Harus Angka)
+    if (!ctype_digit($nip)) {
+        $error = "NIP harus berupa angka!";
+    }
+    // 2. Validasi Nama Guru (Harus Huruf & Karakter Nama Umum)
+    else if (!preg_match("/^[a-zA-Z\s\.',]+$/", $nama_guru)) {
+        $error = "Nama Guru hanya boleh berisi huruf dan tidak boleh mengandung angka!";
+    }
+
+    // Jika terjadi error, tampilkan peringatan dan kembali ke form
+    if (!empty($error)) {
+        echo "<script>
+            alert('$error');
+            window.history.back();
+        </script>";
+        exit;
+    }
+
+    // --- PROSES SIMPAN KE DATABASE (Jika Lolos Validasi) ---
+    $query = "INSERT INTO guru (nip, nama_guru, jenis_kelamin, jabatan) VALUES ('$nip', '$nama_guru', '$jenis_kelamin', '$jabatan')";
+    $simpan = mysqli_query($koneksi, $query);
+    if ($simpan) {
+        header("location:tampil_guru.php");
+        exit;
+    } else {
+        echo "<script>alert('Gagal menambahkan data!');</script>" . mysqli_error($koneksi);
+    }
 }
 ?>
 
