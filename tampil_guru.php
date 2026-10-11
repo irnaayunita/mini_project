@@ -16,44 +16,61 @@ $data = mysqli_fetch_all($hasil, MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Guru</title>
     <link rel="stylesheet" href="assets/style.css">
+    <!-- Font Awesome untuk ikon (opsional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1 class="form-title">Data Guru</h1>
-    
-    <table border="1">
-        <thead>
-            <tr>
-                <th>NIP</th>
-                <th>Nama Guru</th>
-                <th>Jenis Kelamin</th>
-                <th>Jabatan</th>
 
-                <?php if (strtolower($role) === 'administrator' || strtolower($role) === 'admin'): ?>
-                <th>Aksi</th>
+    <div class="container">
+        <!-- Judul Halaman -->
+        <h2 class="form-title" style="margin-top: 10px; margin-bottom: 25px; text-align: center;">Data Guru</h2>
+        
+        <!-- Tabel Data (Tanpa atribut border="1" agar mengikuti style.css) -->
+        <table>
+            <thead>
+                <tr>
+                    <th>NIP</th>
+                    <th>Nama Guru</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Jabatan</th>
+
+                    <?php if (strtolower($role) === 'administrator' || strtolower($role) === 'admin'): ?>
+                    <th>Aksi</th>
+                    <?php endif; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($data)): ?>
+                    <?php foreach ($data as $guru): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($guru['nip']); ?></td>
+                        <td><?php echo htmlspecialchars($guru['nama_guru']); ?></td>
+                        <td><?php echo htmlspecialchars($guru['jenis_kelamin']); ?></td>
+                        <td><?php echo htmlspecialchars($guru['jabatan']); ?></td>
+
+                        <?php if (strtolower($role) === 'administrator' || strtolower($role) === 'admin'): ?>
+                        <td>
+                            <a href="update_guru.php?nip=<?php echo $guru['nip']; ?>" class="update-zoom">🛠️ Update</a>
+                            <a href="delete_guru.php?nip=<?php echo $guru['nip']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="delete">🗑️ Delete</a>
+                        </td>
+                        <?php endif; ?>
+                    </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="<?php echo (strtolower($role) === 'administrator' || strtolower($role) === 'admin') ? 5 : 4; ?>" style="text-align: center; color: var(--text-muted);">Data guru belum tersedia.</td>
+                    </tr>
                 <?php endif; ?>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($data as $guru): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($guru['nip']); ?></td>
-                <td><?php echo htmlspecialchars($guru['nama_guru']); ?></td>
-                <td><?php echo htmlspecialchars($guru['jenis_kelamin']); ?></td>
-                <td><?php echo htmlspecialchars($guru['jabatan']); ?></td>
+            </tbody>
+        </table>
 
-                <?php if (strtolower($role) === 'administrator' || strtolower($role) === 'admin'): ?>
-                <td>
-                    <a href="update_guru.php?nip=<?php echo $guru['nip']; ?>" class="update-zoom">🛠️ Update</a>
-                    <a href="delete_guru.php?nip=<?php echo $guru['nip']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="delete">🗑️ Delete</a>
-                </td>
-                <?php endif; ?>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-
-    <div class="btn-container">
-        <a href="index.php" class="btn-back btn-zoom">Kembali</a>
+        <!-- Tombol Navigasi Bawah -->
+        <div class="btn-container">
+            <a href="index.php" class="btn-back">
+                <i class="fa-solid fa-arrow-left"></i> Kembali
+            </a>
+        </div>
     </div>
+
 </body>
 </html>
