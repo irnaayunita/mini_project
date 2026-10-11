@@ -126,6 +126,10 @@ if (isset($_POST['login'])) {
                     <span>Masuk</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
+
+                <div style="text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-muted);">
+                    Belum punya akun? <a href="register.php" style="color: var(--navy-primary); font-weight: 700; text-decoration: none;">Daftar di sini</a>
+                </div>
             </form>
         </div>
     </div>
