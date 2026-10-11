@@ -1,6 +1,4 @@
-// ==========================================================================
 // 1. SHOW/HIDE PASSWORD
-// ==========================================================================
 function togglePassword() {
     const passwordInput = document.getElementById('password');
     const toggleEye = document.getElementById('toggleEye');
@@ -18,9 +16,7 @@ function togglePassword() {
     }
 }
 
-// ==========================================================================
 // 2. EVENT LISTENER UTAMA (DOM LOADED)
-// ==========================================================================
 document.addEventListener("DOMContentLoaded", function () {
     
     // --- Canvas Partikel (Opsional) ---
@@ -99,9 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// ==========================================================================
 // 3. FUNGSI HAPUS DATA (GURU & MAPEL)
-// ==========================================================================
 function deleteGuru(nip) {
     if (typeof Swal !== 'undefined') {
         Swal.fire({

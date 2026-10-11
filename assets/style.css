@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. VARIABEL WARNA & RESET BASIC
-   ========================================================================== */
+/* VARIABEL WARNA & RESET BASIC */
 :root {
     --navy-primary: #1e3a8a;       /* Biru Navy Utama */
     --navy-dark: #0f172a;          /* Dark Navy Text */
@@ -42,9 +40,7 @@ body {
     flex: 1;
 }
 
-/* ==========================================================================
-   2. NAVBAR & USER PROFILE
-   ========================================================================== */
+/* NAVBAR & USER PROFILE */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -129,9 +125,7 @@ body {
     border-color: #ef4444;
 }
 
-/* ==========================================================================
-   3. HERO BANNER, KURIKULUM BOX & MENU GRID
-   ========================================================================== */
+/* HERO BANNER, KURIKULUM BOX & MENU GRID */
 .welcome-hero {
     background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: #ffffff;
@@ -260,9 +254,7 @@ a.menu-card:hover {
     color: var(--navy-primary);
 }
 
-/* ==========================================================================
-   4. HALAMAN LOGIN (LOGIN.PHP)
-   ========================================================================== */
+/* HALAMAN LOGIN */
 .glass-card {
     display: flex;
     width: 100%;
@@ -415,9 +407,7 @@ a.menu-card:hover {
     background-color: var(--emerald-hover);
 }
 
-/* ==========================================================================
-   5. FORM CARD & UPDATE CARD
-   ========================================================================== */
+/* FORM CARD & UPDATE CARD */
 .form-card, 
 .update-card {
     background: #ffffff;
@@ -515,9 +505,7 @@ a.menu-card:hover {
     background-color: #475569;
 }
 
-/* ==========================================================================
-   6. TABEL DATA (TAMPIL GURU & MAPEL)
-   ========================================================================== */
+/* TABEL DATA (TAMPIL GURU & MAPEL) */
 table {
     width: 100%;
     max-width: 1050px;
@@ -575,9 +563,7 @@ table tr:hover {
     display: inline-block;
 }
 
-/* ==========================================================================
-   7. FOOTER & MEDIA QUERIES
-   ========================================================================== */
+/* FOOTER & MEDIA QUERIES */
 .footer {
     text-align: center;
     padding: 24px;
