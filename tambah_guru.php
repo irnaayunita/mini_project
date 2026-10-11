@@ -9,11 +9,11 @@ if (isset($_POST['submit'])) {
 
   $error = "";
 
-    // 1. Validasi NIP (Harus Angka)
+    // Validasi NIP (Harus Angka)
     if (!ctype_digit($nip)) {
         $error = "NIP harus berupa angka!";
     }
-    // 2. Validasi Nama Guru (Harus Huruf & Karakter Nama Umum)
+    // Validasi Nama Guru (Harus Huruf & Karakter Nama Umum)
     else if (!preg_match("/^[a-zA-Z\s\.',]+$/", $nama_guru)) {
         $error = "Nama Guru hanya boleh berisi huruf dan tidak boleh mengandung angka!";
     }

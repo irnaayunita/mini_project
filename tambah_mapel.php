@@ -10,11 +10,11 @@ if (isset($_POST['submit'])) {
   
   $error = "";
 
-    // 1. Validasi Kode Mapel (Harus Angka)
+    // Validasi Kode Mapel (Harus Angka)
     if (!ctype_digit($kode_mapel)) {
         $error = "Kode Mapel harus berupa angka!";
     }
-    // 2. Validasi Nama Mapel (Harus Huruf & Karakter Nama Umum)
+    // Validasi Nama Mapel (Harus Huruf & Karakter Nama Umum)
     else if (!preg_match("/^[a-zA-Z\s\.',]+$/", $nama_mapel)) {
         $error = "Nama Mapel hanya boleh berisi huruf dan tidak boleh mengandung angka!";
     }
