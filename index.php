@@ -34,7 +34,7 @@ $role         = $_SESSION['role'];
     <nav class="navbar">
         <div class="brand-logo">
             <i class="fa-solid fa-graduation-cap"></i>
-            <span>Kurikulum</span>
+            <span>Kurikulum SMKN 1 MAJA</span>
         </div>
 
         <div class="user-profile">
@@ -219,7 +219,7 @@ $role         = $_SESSION['role'];
 
     <!-- Footer -->
     <footer class="footer">
-        &copy; <?= date('Y'); ?> Akses Sistem Informasi Kurikulum.
+        &copy; <?= date('Y'); ?> Akses Kurikulum.
     </footer>
 
     <script src="assets/script.js"></script>
