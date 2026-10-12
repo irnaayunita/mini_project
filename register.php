@@ -11,15 +11,28 @@ if (isset($_POST['register'])) {
     $password     = $_POST['password'];
     $role         = 'user'; // Otomatis di-set sebagai user
 
-    $cek_user = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username'");
-    if (mysqli_num_rows($cek_user) > 0) {
-        $error = "Username sudah digunakan, silakan pilih yang lain!";
+    // Validasi Username hanya boleh huruf (tanpa spasi/angka)
+    if (!preg_match("/^[a-zA-Z]+$/", $username)) {
+        $error = "Username harus diisi dengan huruf saja tanpa spasi atau angka!";
+    } 
+    // Validasi Nama lengkap hanya boleh huruf dan spasi
+    elseif (!preg_match("/^[a-zA-Z\s]+$/", $nama_lengkap)) {
+        $error = "Nama lengkap harus diisi dengan huruf dan spasi!";
+    } 
+    // Validasi Password harus lebih dari 5 huruf/karakter (minimal 6 karakter)
+    elseif (strlen($password) <= 5) {
+        $error = "Password harus lebih dari 5 karakter!";
     } else {
-        $query = "INSERT INTO users (username, nama_lengkap, password, role) VALUES ('$username', '$nama_lengkap', '$password', '$role')";
-        if (mysqli_query($koneksi, $query)) {
-            $success = "Registrasi berhasil! Silakan masuk.";
+        $cek_user = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username'");
+        if (mysqli_num_rows($cek_user) > 0) {
+            $error = "Username sudah digunakan, silakan pilih yang lain!";
         } else {
-            $error = "Registrasi gagal, silakan coba lagi.";
+            $query = "INSERT INTO users (username, nama_lengkap, password, role) VALUES ('$username', '$nama_lengkap', '$password', '$role')";
+            if (mysqli_query($koneksi, $query)) {
+                $success = "Registrasi berhasil! Silakan masuk.";
+            } else {
+                $error = "Registrasi gagal, silakan coba lagi.";
+            }
         }
     }
 }

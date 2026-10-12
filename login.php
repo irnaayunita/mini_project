@@ -9,8 +9,17 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
     $role     = $_POST['role'] ?? '';
 
+    // Validasi Hak akses wajib dipilih
     if (empty($role)) {
         $error = "Pilih hak akses terlebih dahulu!";
+    } 
+    // Validasi Username hanya boleh berisi huruf
+    elseif (!preg_match("/^[a-zA-Z]+$/", $username)) {
+        $error = "Username harus diisi dengan huruf saja tanpa spasi atau angka!";
+    } 
+    // Validasi Password harus lebih dari 5 karakter
+    elseif (strlen($password) <= 5) {
+        $error = "Password harus lebih dari 5 karakter!";
     } else {
         $query  = "SELECT * FROM users WHERE username = '$username' AND role = '$role'";
         $result = mysqli_query($koneksi, $query);
@@ -67,12 +76,12 @@ if (isset($_POST['login'])) {
                 <h1>Platform Digital Pengelolaan Kurikulum</h1>
                 <p>Akses cepat dan aman untuk data guru, data mapel, dan pengolahan data akademis sekolah.</p>
                 
-                <div class="feature-badge">
-                    <i class="fa-solid fa-shield-check" style="color: #1e3a8a;"></i>
+                <div class="feature-badge" style="background: rgba(255, 255, 255, 0.1); padding: 8px 12px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; color: #ffffff; font-size: 13px; font-weight: 600;">
+                    <i class="fa-solid fa-shield-check" style="color: #60a5fa;"></i>
                     Sistem Multi-User
                 </div>
             </div>
-            <div class="banner-footer">
+            <div class="banner-footer" style="font-size: 12px; color: #94a3b8;">
                 &copy; Akses Kurikulum
             </div>
         </div>
@@ -85,7 +94,7 @@ if (isset($_POST['login'])) {
             </div>
 
             <?php if (!empty($error)) : ?>
-                <div class="alert-error">
+                <div class="alert-error" style="background-color: #fee2e2; color: #dc2626; padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <span><?= $error; ?></span>
                 </div>
@@ -114,15 +123,15 @@ if (isset($_POST['login'])) {
                     <div class="input-box">
                         <select id="role" name="role" required>
                             <option value="" disabled selected>-- Pilih Akses --</option>
-                            <option value="admin">Admin </option>
-                            <option value="user">User </option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
                         </select>
                         <i class="fa-solid fa-user-shield icon-left"></i>
                         <i class="fa-solid fa-chevron-down select-arrow"></i>
                     </div>
                 </div>
 
-                <button type="submit" name="login" class="btn-login">
+                <button type="submit" name="login" class="btn-login" style="margin-top: 10px;">
                     <span>Masuk</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
