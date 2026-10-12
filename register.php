@@ -9,21 +9,17 @@ if (isset($_POST['register'])) {
     $username     = mysqli_real_escape_string($koneksi, $_POST['username']);
     $nama_lengkap = mysqli_real_escape_string($koneksi, $_POST['nama_lengkap']);
     $password     = $_POST['password'];
-    $role         = $_POST['role'] ?? '';
+    $role         = 'user'; // Otomatis di-set sebagai user
 
-    if (empty($role)) {
-        $error = "Pilih hak akses terlebih dahulu!";
+    $cek_user = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username'");
+    if (mysqli_num_rows($cek_user) > 0) {
+        $error = "Username sudah digunakan, silakan pilih yang lain!";
     } else {
-        $cek_user = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username'");
-        if (mysqli_num_rows($cek_user) > 0) {
-            $error = "Username sudah digunakan, silakan pilih yang lain!";
+        $query = "INSERT INTO users (username, nama_lengkap, password, role) VALUES ('$username', '$nama_lengkap', '$password', '$role')";
+        if (mysqli_query($koneksi, $query)) {
+            $success = "Registrasi berhasil! Silakan masuk.";
         } else {
-            $query = "INSERT INTO users (username, nama_lengkap, password, role) VALUES ('$username', '$nama_lengkap', '$password', '$role')";
-            if (mysqli_query($koneksi, $query)) {
-                $success = "Registrasi berhasil! Silakan masuk.";
-            } else {
-                $error = "Registrasi gagal, silakan coba lagi.";
-            }
+            $error = "Registrasi gagal, silakan coba lagi.";
         }
     }
 }
@@ -44,7 +40,7 @@ if (isset($_POST['register'])) {
 <body>
 
     <div class="glass-card">
-        <!-- Banner Left (Disamakan persis dengan teks login.php agar ukurannya seimbang) -->
+        <!-- Banner Left -->
         <div class="banner-side">
             <div class="brand-logo">
                 <i class="fa-solid fa-graduation-cap"></i>
@@ -111,20 +107,7 @@ if (isset($_POST['register'])) {
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="role">Hak Akses</label>
-                    <div class="input-box">
-                        <select id="role" name="role" required>
-                            <option value="" disabled selected>-- Pilih Akses --</option>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                        </select>
-                        <i class="fa-solid fa-user-shield icon-left"></i>
-                        <i class="fa-solid fa-chevron-down select-arrow"></i>
-                    </div>
-                </div>
-
-                <button type="submit" name="register" class="btn-login">
+                <button type="submit" name="register" class="btn-login" style="margin-top: 10px;">
                     <span>Daftar</span>
                     <i class="fa-solid fa-user-plus"></i>
                 </button>
