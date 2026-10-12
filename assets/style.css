@@ -616,3 +616,39 @@ table tr:hover {
         margin: 20px auto;
     }
 }
+
+/* TAMBAHAN RESPONSIF UNTUK HP / MOBILE */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        display: block;
+    }
+
+    .glass-card {
+        flex-direction: column; /* Membuat banner pindah ke atas form secara otomatis di HP */
+        max-width: 100%;
+        margin: 15px auto;
+    }
+
+    .banner-side {
+        padding: 24px 20px;
+        text-align: center;
+    }
+
+    .brand-logo {
+        justify-content: center;
+    }
+
+    .feature-badge {
+        margin: 12px auto 0 auto;
+    }
+
+    .banner-footer {
+        margin-top: 12px;
+        text-align: center;
+    }
+
+    .form-side {
+        padding: 24px 20px;
+    }
+}
