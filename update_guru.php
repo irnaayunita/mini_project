@@ -80,7 +80,7 @@ $lama = mysqli_fetch_assoc($hasil_lama);
                 
                 <div class="btn-container" style="justify-content: center; gap: 12px; margin-top: 25px;">
                     <button type="submit" name="submit" class="btn-zoom">Update</button>
-                    <a href="index.php" class="btn-back">Kembali</a>
+                    <a href="tampil_guru.php" class="btn-back">Kembali</a>
                 </div>
             </form>
         </div>
