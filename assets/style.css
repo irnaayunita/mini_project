@@ -537,6 +537,12 @@ a.menu-card:hover {
     background-color: #475569;
 }
 
+.aksi-btn{
+    display: inline-block;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
 /* TABEL DATA (TAMPIL GURU & MAPEL) */
 table {
     width: 100%;
